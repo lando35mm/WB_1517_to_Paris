@@ -1,0 +1,64 @@
+@import "variables.postcss";
+
+
+#sponsor-content-header {
+    background-color: var(--sponsor-header-bg);
+    color: var(--sponsor-header-fg);
+    position:relative;
+    & .gold {
+        font-family: CNNDisplay-Medium;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1;
+        margin: 0 auto;
+        max-width: 1140px;
+        padding: 10px 20px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
+
+
+.main{
+    width:100%;
+    z-index: 1;
+    background-color: #000000;
+    /* background-image: linear-gradient(to bottom, white 0%, black 100%); */
+    padding:0px;
+    overflow:hidden;
+}
+
+.times-circle {
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    & > circle {
+        fill: #ffffff;    
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #000000;
+}
+
+body > header {
+    position: relative;
+    z-index: 2000;
+    width:100%;
+    pointer-events: none;
+}
+
+footer{
+    
+}
+
+i { 
+    font-style: italic; 
+    }

@@ -1,0 +1,14 @@
+
+@font-face {
+    font-family: 'CNNDisplay-Medium';
+    src: url('CNNSansDisplay-Medium.woff2') format('woff2'),
+        url('CNNSansDisplay-Medium.woff') format('woff');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CNNDisplay-Light';
+    src: url('CNNSansDisplay-Light.woff2') format('woff2'),
+        url('CNNSansDisplay-Light.woff') format('woff');
+    font-style: normal;
+}
