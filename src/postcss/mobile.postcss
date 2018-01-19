@@ -34,7 +34,7 @@
     top:0px;
     left:0px;
     width:100%;
-    height:460px;
+    height:200px;
 }
 
 .title-img{
@@ -42,9 +42,9 @@
     top:0px;
     left:50%;
     transform: translateX(-50%);
-    width:1440px;
-    height:460px;
-    background: url('../media/img/title.jpg') no-repeat 100%;
+    width:100%;
+    height:200px;
+    background: url('../media/img/hero_mobile.jpg') no-repeat 100%;
     background-position: center center;
 }
 
@@ -54,12 +54,12 @@
 
 .paid-content{
     width:100%;
-    height:45px;
+    height:25px;
 }
 
 .paid-content div{
     position:relative;
-    top:14px;
+    top:7px;
     width:200px;
     height:12px;
     left:50%;
@@ -73,7 +73,7 @@
 
 .video-wrapper{
     width:100%;
-    height:598px;
+    height:100%;
 }
 
 .video-play{
@@ -85,19 +85,11 @@
 
 .video-play div{
     position:absolute;
-    top:5px;
-    left:0px;
+    top:2px;
+    left:-5px;
     width:24px;
     height:24px;
-    background: url('../media/img/video_icon.png') no-repeat center 100%;
-}
-
-.video1{
-    background: url('../media/img/videoStill.jpg') no-repeat center 100%;
-}
-
-.video2{
-    background: url('../media/img/videoStill2.jpg') no-repeat center 100%;
+    background: url('../media/img/video_icon_mobile.png') no-repeat center 100%;
 }
 
 .gold-border{
@@ -106,8 +98,8 @@
 }
 
 .video-dek{
-    padding-top:28px;
-    padding-bottom:120px;
+    padding-top:25px;
+    padding-bottom:65px;
     position:relative;
     top:0px;
     width:100%;
@@ -122,8 +114,8 @@
 }
 
 .archive-hed{
-    padding-top:88px;
-    padding-bottom:16px;
+    padding-top:65px;
+    padding-bottom:20px;
     position:relative;
     top:0px;
     width:100%;
@@ -136,32 +128,30 @@
 }
 
 .archive-dek{
-    padding-bottom:32px;
+    padding-bottom:25px;
     position:relative;
     top:0px;
     width:100%;
-    /* Take a look back at: */
     font-family: CNNDisplay-Light;
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
     line-height: 22px;
-    /* Take a look back at: */
+    
 }
 
 .archive-img{
     background: url('../media/img/archiveImage_mobile.jpg') no-repeat 100%;
-    background-position: center center;
+    background-position: center top;
     width:100%;
-    height:200px;
+    height:194px;
     padding-bottom:40px;
     border-bottom:solid 1px #282828;
-
 }
 
 .archive-row{
-    padding-top:25px;
-    padding-bottom:24px;
+    padding-top:18px;
+    padding-bottom:18px;
     position:relative;
     width:100%;
     border-bottom:solid 1px #282828;
@@ -172,8 +162,12 @@
     font-size: 14px;
     color: #FFFFFF;
     letter-spacing: 0;
-    line-height: 19px;
+    line-height: 10px;
     text-decoration:none;
+}
+
+.archive-bottom{
+    padding-bottom:50px;
 }
 
 .dashed-rule{
@@ -185,25 +179,38 @@
 
 .cta-row{
     width:100%;
-    padding-top:30px;
 }
 
 .cta-wrapper{
-    width:100%;
-    height:399px;
+    width:300px;
+    height:250px;
     margin: 0px auto;
     
 }
 
 .cta-img{
     position:relative;
-    background: url('../media/img/banner_mobile.png') no-repeat 100%;
-    background-position: center center;
-    width:100%;
-    height:394px;
+    width:300px;
+    height:250px;
     padding-top:40px;
     padding-bottom:40px;
     cursor:pointer;
+}
+
+.cta-feb9{
+    background: url('../media/img/1517_feb9_visitSite_static_300x250.jpg') no-repeat 100%;
+}
+
+.cta-friday{
+    background: url('../media/img/1517_friday_getTickets_static_300x250.jpg') no-repeat 100%;
+}
+
+.cta-tomorrow{
+    background: url('../media/img/1517_tomorrow_getTickets_static_300x250.jpg') no-repeat 100%;
+}
+
+.cta-nowplaying{
+    background: url('../media/img/1517_nowPlaying_getTickets_static_300x250.jpg') no-repeat 100%;
 }
 
 .red{
@@ -248,8 +255,15 @@
 
 .paid-video{
     width:100%;
-    height:598px;
+    height:134px;
     /*border:dotted 1px #00ff00;*/
+}
+
+.trailer-video{
+    margin-top:45px;
+    margin-bottom:45px;
+    width:100%;
+    height:100%;
 }
 
 .times-circle {
@@ -267,9 +281,11 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
+    width: 34px;
+    height: 34px;
     pointer-events:none;
+    background: url('../media/img/play_btn_mobile.png') no-repeat 100%;
+    opacity:0.8;
     }
 
 .video-close{
@@ -281,7 +297,7 @@
     z-index:10;
 }
 
-.video-background {
+.video-background-aspect {
     
     position: relative;
     top: 50%;;
@@ -289,8 +305,18 @@
     transform: translate(-50%, -50%);
     overflow:hidden;
     background-color:#000000;
-    
+
     width: 100%;
     height: auto;
    
+}
+
+.video-background {
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow:hidden;
+    background-color:#000000;
+    width: 100%;
+    height: auto;
 }
