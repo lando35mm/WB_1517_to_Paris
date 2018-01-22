@@ -85,10 +85,8 @@
     videoEmbedWrapper = gid('video_embed_wrapper'),
     videoClose = gid('video_close'),
     sponsor_content_header = gid('sponsor-content-header'),
+    ctaWrapper = gid('ctaWrapper'),
     cta = gid('ctaButton');
-
-
-    
 
     var ctaClass = 'cta-img cta-feb9';
     
@@ -102,9 +100,24 @@
         }
     }
     
+    var trackingDiv = document.createElement('div');
+    ctaWrapper.appendChild(trackingDiv);
+    trackingDiv.className = "tracking-div";
+
+
+    var ctaUrl = 'https://ad.doubleclick.net/ddm/trackclk/N7217.149036.TURNERSPORTSANDENTE/B20610477.213161002;dc_trk_aid=412280939;dc_trk_cid=97183226;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=';
+    trackingDiv.innerHTML = '<IMG SRC="https://ad.doubleclick.net/ddm/trackimp/N7217.149036.TURNERSPORTSANDENTE/B20610477.213121970;dc_trk_aid=412280939;dc_trk_cid=97183226;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?" BORDER="0" HEIGHT="1" WIDTH="1" ALT="Advertisement"><SCRIPT TYPE="application/javascript" SRC="https://pixel.adsafeprotected.com/rjss/st/134671/21680670/skeleton.js"></SCRIPT> <NOSCRIPT><IMG SRC="https://pixel.adsafeprotected.com/rfw/st/134671/21680669/skeleton.gif" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></NOSCRIPT>';
     
+    var style = cta.currentStyle || window.getComputedStyle(cta, false);
+    if(style.backgroundImage.indexOf('600x400') > 0){
+       ctaUrl = 'https://ad.doubleclick.net/ddm/trackclk/N7217.149036.TURNERSPORTSANDENTE/B20610477.213121970;dc_trk_aid=412280939;dc_trk_cid=97183226;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=';
+        trackingDiv.innerHTML = '<IMG SRC="https://ad.doubleclick.net/ddm/trackimp/N7217.149036.TURNERSPORTSANDENTE/B20610477.213161002;dc_trk_aid=412280939;dc_trk_cid=97183226;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?" BORDER="0" HEIGHT="1" WIDTH="1" ALT="Advertisement"><SCRIPT TYPE="application/javascript" SRC="https://pixel.adsafeprotected.com/rjss/st/134671/21680668/skeleton.js"></SCRIPT> <NOSCRIPT><IMG SRC="https://pixel.adsafeprotected.com/rfw/st/134671/21680667/skeleton.gif" BORDER=0 WIDTH=1 HEIGHT=1 ALT=""></NOSCRIPT>';
+    }
 
     cta.className = ctaClass;
+    cta.addEventListener('click', function(){
+        window.open(ctaUrl);
+    });
 
     var vid1 = videoClick1.getAttribute('data-yt');
     var options = {
@@ -167,12 +180,6 @@
     }
 
     setVideoSrc();
-    
-    cta.addEventListener('click', function(){
-        let ctaUrl = cta.getAttribute('linkUrl');
-
-        window.open(ctaUrl);
-    });
 
     /**
      * Create a synthetic event with optional data and dispatch to a target DOM node.
