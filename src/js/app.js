@@ -40,39 +40,26 @@
             videoQuality = 'M';
         }
         else{
-            if (window.matchMedia("(max-width: 640px)").matches) {
-                videoQuality = 'SSD';
-            }
-            else if (window.matchMedia("(max-width: 1200px)").matches && window.matchMedia("(min-width: 640px)").matches) {
-                videoQuality = 'SD';
-            } 
-            else if (window.matchMedia("(min-width: 1200px)").matches) {
-                videoQuality = 'HD';
-            }
+            videoQuality = 'HD';
         }
     };
     
-
     var contentVideoPaths = {
         'video_1':{
             'HD':'media/vid/wb1517paid_content_loop_HD.mp4',
-            'SD':'media/vid/wb1517paid_content_loop_SD.mp4',
-            'SSD':'media/vid/wb1517paid_content_loop_SSD.mp4',
             'M':'media/vid/wb1517paid_content_loop_SSD.mp4'
         },
         'video_2':{
-            'HD':'media/vid/wb1517_trailer_overlay_desktop_HD.mp4',
-            'SD':'media/vid/wb1517_trailer_overlay_desktop_SD.mp4',
-            'SSD':'media/vid/wb1517_trailer_overlay_desktop_SSD.mp4',
-            'M':'media/vid/wb1517_trailer_overlay_desktop_M.mp4'
+            'HD':'media/vid/wb1517_trailer_paris_desktop.mp4',
+            'M':'media/vid/wb1517_trailer_paris_mobile.mp4'
         }
-    
     };
     function gid(s){
         return document.getElementById(s);
     }
 
-    var cnn_header = gid('cnn_header'),
+    var headerBar = gid('headerBar'),
+    cnn_header = gid('cnn_header'),
     video_background_1 = gid('video_bg_1'),
     video_background_2 = gid('video_bg_2'),
     videoPlayer = '',
@@ -136,7 +123,7 @@
         videoPlayer = gid('video_bg_'+n);
         videoClick = gid('video-click_'+n);
         videoPlayer.pause();
-
+        headerBar.style.display = "none";//hide that annoying header when video is playing
         var vimID = videoClick.getAttribute('data-yt');
         console.log(vimID+' '+videoClick.id+' CLICKED');
         player.loadVideo(vimID).then(function(id) {
@@ -166,7 +153,7 @@
     };
     videoClose.addEventListener('click', () => {
         player.pause();
-        
+        headerBar.style.display = "block";
         videoEmbedWrapper.style.display = "none";
         videoPlayer.play();
     });
