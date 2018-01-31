@@ -4,6 +4,7 @@
  * @external Node
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Node Node}
  */
+const deeplink = location.hash.substring(1);
 
 (function () {
 
@@ -14,7 +15,7 @@
     var tomorrowDate = new Date('january 19, 2018 16:'+test+':15');
     var feb9Date = new Date('january 19, 2018 16:'+test+':30');
     */
-    var fridayDate = new Date('february 5, 2018 00:00:00');
+    var fridayDate = new Date('january 30, 2018 00:00:00');
     var tomorrowDate = new Date('february 8, 2018 00:00:00');
     var feb9Date = new Date('february 9, 2018 00:00:00');
     
@@ -42,6 +43,7 @@
         else{
             videoQuality = 'HD';
         }
+
     };
     
     var contentVideoPaths = {
@@ -113,12 +115,27 @@
         loop: false
     };
     var player = new Vimeo.Player(videoEmbed, options);
-
     
+    if(deeplink==='brave'){
+        
+        gtag('event', 'Deeplink');
+        buttonClick('1');
+    }
 
-    videoClick1.addEventListener('click',function(){buttonClick('1');});
-    videoClick2.addEventListener('click',function(){buttonClick('2');});
-    
+    videoClick1.addEventListener('click',function(){trackClick('1');});
+    videoClick2.addEventListener('click',function(){trackClick('2');});
+
+    function trackClick(n){
+
+        gtag('send', {
+            hitType: 'event',
+            eventCategory: 'video',
+            eventAction: 'activated',
+            eventLabel: 'video '+n+' clicked',
+            });
+            buttonClick(n);
+    }
+
     function buttonClick(n){
         videoPlayer = gid('video_bg_'+n);
         videoClick = gid('video-click_'+n);
@@ -126,9 +143,22 @@
         headerBar.style.display = "none";//hide that annoying header when video is playing
         var vimID = videoClick.getAttribute('data-yt');
         console.log(vimID+' '+videoClick.id+' CLICKED');
+        
+        
         player.loadVideo(vimID).then(function(id) {
             videoEmbedWrapper.style.display = "block";
             player.play();
+            player.on('ended', function() {
+                console.log('ENDED');
+                gtag('send', {
+                    hitType: 'event',
+                    eventCategory: 'video',
+                    eventAction: 'ended',
+                    eventLabel,
+                });
+                
+            });
+
         }).catch(function(error) {
             switch (error.name) {
                 case 'TypeError':
@@ -158,15 +188,10 @@
         videoPlayer.play();
     });
 
-    
+    setQuality();
+    video_background_1.src = contentVideoPaths.video_1[videoQuality];
+    video_background_2.src = contentVideoPaths.video_2[videoQuality];
 
-    function setVideoSrc(){
-        setQuality();
-        video_background_1.src = contentVideoPaths.video_1[videoQuality];
-        video_background_2.src = contentVideoPaths.video_2[videoQuality];
-    }
-
-    setVideoSrc();
 
     /**
      * Create a synthetic event with optional data and dispatch to a target DOM node.
@@ -194,7 +219,6 @@
     
     /** Entry point. Bootstrap code: Configure and await dependencies, then call {@link init} */
     (function main() {
-        console.log('PROMISE');
         Promise.all([
             // wait for the DOMContentLoaded event
             new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve)),

@@ -9,22 +9,23 @@
         
 
         <link rel="stylesheet" href="css/page.css">
-
-        <script src="js/lib/webfontloader/webfontloader.js" defer></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+        <script src="js/polyfill.js" defer></script>
 
         <script src="https://player.vimeo.com/api/player.js"></script>
-        <script src="js/app.js" defer></script>
+        
+        
 
         <!--Global Site Tag (gtag.js) - Google Analytics-->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79459204-12"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79459204-14"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments)};
-            gtag('js', new Date());
-            gtag('config', 'UA-79459204-12');
-        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-79459204-14');
         </script>
+        <script src="js/app.js" defer></script>
     </head>
 
     <body>
@@ -59,7 +60,7 @@
                     </div>
                     <div id="video-click_1" class="video-click paid-video" data-yt="252552862">
                         <div class="video-wrapper">
-                            <video autoplay playsinline muted loop isPlaying="false" id="video_bg_1" class="vbg video-background-aspect "></video>
+                            <video autoplay="true" playsinline muted loop isPlaying="false" id="video_bg_1" class="vbg video-background-aspect "></video>
                         </div>
 
                         <div id="play_btn1_id" class="playbtn">
@@ -141,7 +142,7 @@
                     
                     <div id="video-click_2" class="video-click trailer-video" data-yt="251726864">
                         <div class="video-wrapper">
-                            <video autoplay playsinline muted loop isPlaying="false" id="video_bg_2" class="vbg video-background "></video>
+                            <video autoplay="true" playsinline muted loop isPlaying="false" id="video_bg_2" class="vbg video-background "></video>
                         </div>
 
                         <div id="play_btn2_id" class="playbtn">
@@ -168,12 +169,12 @@
                 <svg class="times-circle" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100" height="100" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
                     <defs>
                         <mask id="times-circle-mask">
-                            <rect x="0" y="0" width="100" height="100" fill="#ffffff"/>
-                            <rect x="40" y="-5" width="60" height="10" rx="3" ry="3" transform="rotate(45)" fill="#000000"/>
-                            <rect x="40" y="-5" width="60" height="10" rx="3" ry="3" transform="translate(100) rotate(135)" fill="#000000"/>
+                            <rect x="0" y="0" width="100" height="100" fill="#ffffff"></rect>
+                            <rect x="40" y="-5" width="60" height="10" rx="3" ry="3" transform="rotate(45)" fill="#000000"></rect>
+                            <rect x="40" y="-5" width="60" height="10" rx="3" ry="3" transform="translate(100) rotate(135)" fill="#000000"></rect>
                         </mask>
                     </defs>
-                    <circle cx="50" cy="50" r="50" mask="url(#times-circle-mask)"/>
+                    <circle cx="50" cy="50" r="50" mask="url(#times-circle-mask)"></circle>
                 </svg>
             </div>
         </div>
