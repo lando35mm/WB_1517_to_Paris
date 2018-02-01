@@ -118,7 +118,8 @@ const deeplink = location.hash.substring(1);
     
     if(deeplink==='brave'){
         
-        gtag('event', 'Deeplink');
+        gtag('event', 'deep-link');
+        console.log('gtagEvent deep link');
         buttonClick('1');
     }
 
@@ -126,13 +127,8 @@ const deeplink = location.hash.substring(1);
     videoClick2.addEventListener('click',function(){trackClick('2');});
 
     function trackClick(n){
-
-        gtag('send', {
-            hitType: 'event',
-            eventCategory: 'video',
-            eventAction: 'activated',
-            eventLabel: 'video '+n+' clicked',
-            });
+        gtag('event', 'video'+n+'-click');
+        console.log('gtagEvent'+n+'click');
             buttonClick(n);
     }
 
@@ -149,13 +145,8 @@ const deeplink = location.hash.substring(1);
             videoEmbedWrapper.style.display = "block";
             player.play();
             player.on('ended', function() {
-                console.log('ENDED');
-                gtag('send', {
-                    hitType: 'event',
-                    eventCategory: 'video',
-                    eventAction: 'ended',
-                    eventLabel,
-                });
+                console.log('gtagEvent'+n+'ENDED');
+                gtag('event', 'video'+n+'-ended');
                 
             });
 
@@ -281,3 +272,4 @@ const deeplink = location.hash.substring(1);
     }
     */
 }());
+
