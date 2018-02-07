@@ -8,7 +8,28 @@ const deeplink = location.hash.substring(1);
 
 (function () {
 
-    var date = new Date();
+    (function main() {
+        Promise.all([
+            // wait for the DOMContentLoaded event
+            new Promise(function(resolve,reject){document.addEventListener('DOMContentLoaded', resolve)}),
+
+            // Wait for fonts to load
+            new Promise(function(resolve,reject){WebFont.load({
+                
+                classes: true,
+                
+                custom: {
+                    families: ['CNNSans-Light','CNNSans-Regular'],
+                    urls: ['fonts/stylesheet.css'],
+                },
+                active: resolve,
+            })}),
+        ]).then(init);
+    }());
+
+    function init() {
+        console.log('init page');
+        var date = new Date();
     /*
     var test = '27';
     var fridayDate = new Date('january 19, 2018 16:'+test+':00');
@@ -27,15 +48,13 @@ const deeplink = location.hash.substring(1);
     const mobile = matchMedia('(max-width: 1024px)');
     const ie = navigator.userAgent.indexOf('MSIE ') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0 || navigator.userAgent.indexOf('Edge/') >= 0;
 
-    let main;
-    let sections;
-    let subSections;
-    let videoLoops;
-    let videoQuality = 'HD';
+    var main;
+    var sections;
+    var subSections;
+    var videoLoops;
+    var videoQuality = 'HD';
 
-    
-
-    const setQuality = function(){
+    var setQuality = function(){
         
         if(mobile.matches){
             videoQuality = 'M';
@@ -126,6 +145,10 @@ const deeplink = location.hash.substring(1);
     videoClick1.addEventListener('click',function(){trackClick('1');});
     videoClick2.addEventListener('click',function(){trackClick('2');});
 
+    setQuality();
+    video_background_1.src = contentVideoPaths.video_1[videoQuality];
+    video_background_2.src = contentVideoPaths.video_2[videoQuality];
+    
     function trackClick(n){
         gtag('event', 'video'+n+'-click');
         console.log('gtagEvent'+n+'click');
@@ -133,6 +156,7 @@ const deeplink = location.hash.substring(1);
     }
 
     function buttonClick(n){
+
         videoPlayer = gid('video_bg_'+n);
         videoClick = gid('video-click_'+n);
         videoPlayer.pause();
@@ -151,105 +175,26 @@ const deeplink = location.hash.substring(1);
             });
 
         }).catch(function(error) {
-            switch (error.name) {
-                case 'TypeError':
-                    // the id was not a number
-                    break;
-
-                case 'PasswordError':
-                    // the video is password-protected and the viewer needs to enter the
-                    // password first
-                    break;
-
-                case 'PrivacyError':
-                    // the video is password-protected or private
-                    break;
-
-                default:
-                    // some other error occurred
-                    break;
-            }
+            
         });
 
     };
-    videoClose.addEventListener('click', () => {
+    function closeVideo(){
         player.pause();
         headerBar.style.display = "block";
         videoEmbedWrapper.style.display = "none";
         videoPlayer.play();
+    }
+
+    videoClose.addEventListener('click', function(){
+        closeVideo();
     });
 
-    setQuality();
-    video_background_1.src = contentVideoPaths.video_1[videoQuality];
-    video_background_2.src = contentVideoPaths.video_2[videoQuality];
-
-
-    /**
-     * Create a synthetic event with optional data and dispatch to a target DOM node.
-     *
-     * @param {string} type - The event type, e.g. 'click', 'scroll', or a custom name
-     * @param {external:Node} element - The DOM node on which to dispatch the event
-     * @param [data] - Optional data to pass with the event
-     */
-    /*
-    function dispatchSyntheticEvent(type, element, data) {
-        let event;
-
-        if (ie) {
-            event = document.createEvent('Event');
-            event.initEvent(type, true, true);
-        } else {
-            event = new Event(type);
-        }
-
-        event.data = data;
-
-        element.dispatchEvent(event);
-    }
-    */
+    videoClose.addEventListener('ontouchstart', function(){
+        closeVideo();
+    });
     
-    /** Entry point. Bootstrap code: Configure and await dependencies, then call {@link init} */
-    (function main() {
-        Promise.all([
-            // wait for the DOMContentLoaded event
-            new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve)),
-
-            // Wait for fonts to load
-            new Promise(resolve => WebFont.load({
-                
-                classes: true,
-                
-                custom: {
-                    families: ['CNNSans-Light','CNNSans-Regular'],
-                    urls: ['fonts/stylesheet.css'],
-                },
-                active: resolve,
-            })),
-        ]).then(init);
-    }());
-
-
-    /**
-     *
-     */
-
-    function init() {
-        console.log('???');
-
-        main = gid('main');
-        
-        //sections = Array.from(main.querySelectorAll('.section'));
-       
-
-
-        //scroll();
-        //initLazyLoad();
-
-       
     }
-
-
-    
 
     /*
     function initLazyLoad() {
