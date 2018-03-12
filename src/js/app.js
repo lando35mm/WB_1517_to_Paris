@@ -68,7 +68,7 @@ const deeplink = location.hash.substring(1);
     var contentVideoPaths = {
         'video_1':{
             'HD':'media/vid/wb1517paid_content_loop_HD.mp4',
-            'M':'media/vid/wb1517paid_content_loop_SSD.mp4'
+            'M':'media/vid/wb1517paid_content_loop_M.mp4'
         },
         'video_2':{
             'HD':'media/vid/wb1517_trailer_paris_desktop.mp4',
